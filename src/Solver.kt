@@ -34,10 +34,6 @@ object Solver {
         val s = calc(elements, ds)
         val n = elements.map { it.sum() }.let { it[1] - it[0] }
         val r = 8.314
-
-        println("Коэффициенты:")
-        println("a: $pa \nb: $pb \nc: $pc \nc': $pd")
-
         val a = pa
         val b = pb / 1e3
         val c = pc / 1e6
@@ -48,24 +44,15 @@ object Solver {
                 (b / 2.0) * (t.pow(2) - 298.0.pow(2)) +
                 (c / 3.0) * (t.pow(3) - 298.0.pow(3)) -
                 d * (1.0 / t - 1.0 / 298.0)) / 1e3
-        println("Расчеты:")
-        println("h: ${(h / 1e3).out()} кДж/моль")
-        println("H: ${H.out()} кДж/моль")
         val S = s +
                 a * ln(t / 298.0) +
                 b * (t - 298.0) +
                 (c / 2) * (t.pow(2) - 298.0.pow(2)) -
                 (d / 2) * (1.0 / (t.pow(2)) - 1 / (298.0.pow(2)))
-        println("s: ${s.out()} кДж/моль")
-        println("S: ${S.out()} Дж/K*моль")
         val G_298 = (h - 298.0 * s) / 1e3
-        println("G (298): ${G_298.out()} кДж/мол")
         val G = (H * 1e3 - t * S) / 1e3
-        println("G : ${G.out()} кДж/мол")
         val U_298 = (h - n * r * 298.0) / 1e3
-        println("U (298): ${U_298.out()} кДж/мол")
         val U = (H * 1e3 - n * r * t) / 1e3
-        println("U: ${U.out()} кДж/мол")
         return ChemRes(
             pa.out(), pb.out(), pc.out(), pd.out(),
             (h / 1e3).out(), H.out(), s.out(), S.out(),

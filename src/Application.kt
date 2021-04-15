@@ -11,8 +11,7 @@ import java.text.DateFormat
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-@kotlin.jvm.JvmOverloads
-fun Application.module(testing: Boolean = false) {
+fun Application.module() {
     install(CORS) {
         header(HttpHeaders.AccessControlAllowOrigin)
     }
@@ -32,6 +31,9 @@ fun Application.module(testing: Boolean = false) {
                 input.t
             )
             call.respond(output)
+        }
+        get {
+            call.respondText("123")
         }
     }
 }
