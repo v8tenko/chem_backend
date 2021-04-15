@@ -11,8 +11,8 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import java.text.DateFormat
 
-// fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-fun main(args: Array<String>) {
+fun main(args: Array<String>): Unit = EngineMain.main(args)
+/*fun main(args: Array<String>) {
     embeddedServer(Netty, System.getenv("PORT").toInt()) {
         install(CORS) {
             header(HttpHeaders.AccessControlAllowOrigin)
@@ -40,9 +40,9 @@ fun main(args: Array<String>) {
         }
     }.start(wait = true)
 
-}
+}*/
 
-/*fun Application.module() {
+fun Application.module() {
     install(CORS) {
         header(HttpHeaders.AccessControlAllowOrigin)
     }
@@ -67,7 +67,7 @@ fun main(args: Array<String>) {
             call.respondText("123")
         }
     }
-}*/
+}
 
 data class ChemInput(
     val n: List<List<Double>>,
