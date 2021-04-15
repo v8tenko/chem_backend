@@ -44,7 +44,7 @@ fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
     install(CORS) {
-        header(HttpHeaders.AccessControlAllowOrigin)
+        header("key")
     }
     install(ContentNegotiation) {
         gson {
