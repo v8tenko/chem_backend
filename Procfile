@@ -1,1 +1,1 @@
-web:    java -jar target/application.jar
+web:    java -jar target/example.jar

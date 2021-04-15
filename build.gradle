@@ -4,6 +4,7 @@ buildscript {
     }
 
     dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -12,8 +13,11 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.30'
 }
 
+
 apply plugin: 'kotlin'
 apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
 
 group 'com.example'
 version '0.0.1'
@@ -33,6 +37,12 @@ repositories {
 
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
+
+shadowJar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
 
 task copyToLib(type: Copy) {
     into "$buildDir/libs"
