@@ -13,7 +13,7 @@ import java.text.DateFormat
 
 // fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun main(args: Array<String>) {
-    embeddedServer(Netty, 8080) {
+    embeddedServer(Netty, System.getenv("PORT").toInt()) {
         install(CORS) {
             header(HttpHeaders.AccessControlAllowOrigin)
         }
