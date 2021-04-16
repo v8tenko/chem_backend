@@ -12,40 +12,8 @@ import io.ktor.server.netty.*
 import java.text.DateFormat
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
-/*fun main(args: Array<String>) {
-    embeddedServer(Netty, System.getenv("PORT").toInt()) {
-        install(CORS) {
-            header(HttpHeaders.AccessControlAllowOrigin)
-        }
-        install(ContentNegotiation) {
-            gson {
-                setDateFormat(DateFormat.LONG)
-                setPrettyPrinting()
-            }
-        }
-        routing {
-            post("/calc") {
-                val input = call.receive<ChemInput>()
-                val output = Solver.solve(
-                    input.n,
-                    input.a, input.b, input.c, input.d,
-                    input.h, input.s,
-                    input.t
-                )
-                call.respond(output)
-            }
-            get {
-                call.respondText("123")
-            }
-        }
-    }.start(wait = true)
-
-}*/
 
 fun Application.module() {
-    install(CORS) {
-        header("key")
-    }
     install(ContentNegotiation) {
         gson {
             setDateFormat(DateFormat.LONG)
